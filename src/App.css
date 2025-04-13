@@ -1,38 +1,145 @@
+/* Global Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Roboto', sans-serif;
+  background-color: var(--dark-bg);
+  color: var(--light-text);
+  line-height: 1.6;
+}
+
+/* CSS Variables for color scheme */
+:root {
+  --dark-bg: #0a192f;
+  --light-text: #ffffff;
+  --highlight-color: #02a9f7;
+  --secondary-bg: #112240;
+  --section-bg: #1d3557;
+}
+
+/* Container for the app */
 .App {
-  text-align: center;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100vh;
+  overflow: hidden;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
+/* Header Section */
 .App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+  background-color: var(--dark-bg);
+  padding: 60px 0;
+  text-align: center;
+  color: var(--highlight-color);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.App-header h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.App-header p {
+  font-size: 1.25rem;
+}
+
+/* Navigation */
+nav {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  gap: 20px;
+  margin-top: 20px;
 }
 
-.App-link {
-  color: #61dafb;
+nav a {
+  color: var(--light-text);
+  text-decoration: none;
+  font-size: 1.2rem;
+  transition: color 0.3s, transform 0.3s;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+nav a:hover {
+  color: var(--highlight-color);
+  transform: scale(1.1);
+}
+
+/* Section Styles */
+.section {
+  background-color: var(--secondary-bg);
+  padding: 80px 20px;
+  text-align: center;
+  color: var(--light-text);
+}
+
+.section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.section p {
+  font-size: 1.1rem;
+}
+
+.section ul {
+  list-style: none;
+  padding: 0;
+}
+
+.section li {
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+.section a {
+  color: var(--highlight-color);
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 600;
+  transition: all 0.3s ease-in-out;
+}
+
+.section a:hover {
+  color: var(--light-text);
+  text-decoration: underline;
+}
+
+/* Footer */
+.footer {
+  background-color: var(--dark-bg);
+  padding: 20px 0;
+  text-align: center;
+  color: var(--light-text);
+}
+
+.footer p {
+  font-size: 1rem;
+  color: var(--highlight-color);
+}
+
+/* Media Queries */
+@media (max-width: 768px) {
+  .App-header h1 {
+    font-size: 2.5rem;
   }
-  to {
-    transform: rotate(360deg);
+
+  .App-header p {
+    font-size: 1rem;
+  }
+
+  nav {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .section {
+    padding: 50px 20px;
+  }
+
+  .section h2 {
+    font-size: 2rem;
   }
 }

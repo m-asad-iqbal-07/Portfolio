@@ -1,17 +1,33 @@
+// index.js
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+
+// Add global styles
+const style = document.createElement('style');
+style.textContent = `
+  @keyframes morph {
+    0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70% }
+    50% { border-radius: 58% 42% 75% 25% / 76% 46% 54% 24% }
+    100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70% }
+  }
+  
+  @keyframes float {
+    0%, 100% { transform: translateY(0) }
+    50% { transform: translateY(-20px) }
+  }
+  
+  .dark {
+    background-color: #1F2937;
+    color: #F3F4F6;
+  }
+  
+  .dark .card {
+    background-color: #374151 !important;
+    color: #F3F4F6 !important;
+  }
+`;
+document.head.appendChild(style);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+root.render(React.createElement(React.StrictMode, null, React.createElement(App)));
