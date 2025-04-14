@@ -1,9 +1,10 @@
 import React, { Suspense, lazy } from 'react';
-import Navigation from './components/Navigation';
+import Navigation from './components/Header';
 import Skills from './components/Skills';
 import Achievements from './components/Achievements';
 import Projects from './components/Projects';
 import Footer from './components/Footer';
+import header from './components/Header';
 
 const Hero = lazy(() => import('./components/Hero'));
 

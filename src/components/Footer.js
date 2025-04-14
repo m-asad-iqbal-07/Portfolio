@@ -1,86 +1,134 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { motion } from 'framer-motion';
 
 export default function Footer() {
-  return React.createElement('footer', {
-    style: {
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  return (
+    <footer id="footer" style={{
       backgroundColor: '#1F2937',
       color: 'white',
-      padding: '3rem 10%',
+      padding: isMobile ? '2rem 1rem' : '3rem 10%',
       textAlign: 'center'
-    }
-  }, [
-    React.createElement('h2', {
-      style: {
-        fontSize: '2rem',
-        fontWeight: '700',
-        marginBottom: '1.5rem'
-      }
-    }, "Let's Connect"),
-    
-    React.createElement('div', {
-      style: {
+    }}>
+      <motion.h2
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        style={{
+          fontSize: isMobile ? '1.75rem' : '2rem',
+          fontWeight: '700',
+          marginBottom: '1.5rem'
+        }}
+      >
+        Let's Connect
+      </motion.h2>
+      
+      <div style={{
         display: 'flex',
         justifyContent: 'center',
         flexWrap: 'wrap',
-        gap: '1.5rem',
+        gap: isMobile ? '1rem' : '1.5rem',
         marginBottom: '2rem'
-      }
-    }, [
-      createContactItem('Phone', '+92 3337941364', 'tel:+923337941364'),
-      createContactItem('Email', 'masadiqbal385@gmail.com', 'mailto:masadiqbal385@gmail.com'),
-      createContactItem('LinkedIn', 'muhammad-asad-iqbal', 'https://linkedin.com/in/muhammad-asad-iqbal'),
-      createContactItem('GitHub', 'm-asad-iqbal-07', 'https://github.com/m-asad-iqbal-07')
-    ]),
-    
-    React.createElement('p', {
-      style: {
-        color: '#9CA3AF',
-        fontSize: '0.875rem'
-      }
-    }, '© 2023 Muhammad Asad Iqbal. All rights reserved.')
-  ]);
+      }}>
+        {[
+          { label: 'Phone', value: '+92 3337941364', link: 'tel:+923337941364' },
+          { label: 'Email', value: 'masadiqbal385@gmail.com', link: 'mailto:masadiqbal385@gmail.com' },
+          { label: 'LinkedIn', value: 'muhammad-asad-iqbal', link: 'https://linkedin.com/in/muhammad-asad-iqbal' },
+          { label: 'GitHub', value: 'm-asad-iqbal-07', link: 'https://github.com/m-asad-iqbal-07' }
+        ].map((item, index) => (
+          <ContactItem 
+            key={item.label}
+            label={item.label}
+            value={item.value}
+            link={item.link}
+            index={index}
+            isMobile={isMobile}
+          />
+        ))}
+      </div>
+      
+      <motion.p
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5, delay: 0.3 }}
+        style={{
+          color: '#9CA3AF',
+          fontSize: '0.875rem'
+        }}
+      >
+        © 2025 Muhammad Asad Iqbal. All rights reserved.
+      </motion.p>
+    </footer>
+  );
 }
 
-function createContactItem(label, value, link) {
-  return React.createElement('a', {
-    href: link,
-    target: '_blank',
-    rel: 'noopener noreferrer',
-    style: {
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
-      textDecoration: 'none',
-      color: 'white',
-      transition: 'all 0.3s ease',
-      ':hover': {
-        transform: 'translateY(-3px)'
-      }
-    }
-  }, [
-    React.createElement('div', {
-      style: {
-        width: '60px',
-        height: '60px',
-        borderRadius: '50%',
-        backgroundColor: '#4F46E5',
+function ContactItem({ label, value, link, index, isMobile }) {
+  return (
+    <motion.a
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.1 }}
+      whileHover={{ 
+        y: -5,
+        scale: 1.05
+      }}
+      whileTap={{ scale: 0.95 }}
+      style={{
         display: 'flex',
-        justifyContent: 'center',
+        flexDirection: 'column',
         alignItems: 'center',
-        marginBottom: '0.5rem'
-      }
-    }, React.createElement('span', {
-      style: {
-        fontSize: '1.5rem'
-      }
-    }, getIcon(label))),
-    
-    React.createElement('span', {
-      style: {
-        fontWeight: '500'
-      }
-    }, value)
-  ]);
+        textDecoration: 'none',
+        color: 'white',
+        width: isMobile ? '120px' : 'auto'
+      }}
+    >
+      <motion.div
+        style={{
+          width: isMobile ? '50px' : '60px',
+          height: isMobile ? '50px' : '60px',
+          borderRadius: '50%',
+          backgroundColor: '#4F46E5',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+          marginBottom: '0.5rem',
+          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)'
+        }}
+        whileHover={{
+          backgroundColor: '#10B981',
+          transition: { duration: 0.3 }
+        }}
+      >
+        <span style={{ fontSize: isMobile ? '1.25rem' : '1.5rem' }}>
+          {getIcon(label)}
+        </span>
+      </motion.div>
+      
+      <span style={{
+        fontWeight: '500',
+        fontSize: isMobile ? '0.9rem' : '1rem'
+      }}>
+        {value}
+      </span>
+    </motion.a>
+  );
 }
 
 function getIcon(label) {
