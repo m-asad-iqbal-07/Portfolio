@@ -68,8 +68,10 @@ export default function Skills() {
       ref={sectionRef}
       style={{
         padding: isMobile ? '4rem 1rem' : '6rem 10%',
-        backgroundColor: '#FFFFFF',
-        position: 'relative'
+        backgroundColor: 'var(--navy)',
+        position: 'relative',
+        borderTop: '1px solid rgba(0, 245, 255, 0.1)',
+        borderBottom: '1px solid rgba(0, 245, 255, 0.1)'
       }}
     >
       <motion.div
@@ -80,13 +82,13 @@ export default function Skills() {
         <h2 style={{
           fontSize: isMobile ? '2rem' : '2.5rem',
           fontWeight: '700',
-          color: '#1F2937',
+          color: 'var(--cyan)',
           marginBottom: isMobile ? '2rem' : '3rem',
           textAlign: 'center',
-          position: 'relative'
+          position: 'relative',
+          textShadow: '0 0 10px rgba(0, 245, 255, 0.3)'
         }}>
           Technical Skills
-          
         </h2>
       </motion.div>
       
@@ -119,17 +121,18 @@ function SkillCard({ category, index, isMobile, isInView }) {
       transition={{ duration: 0.5, delay: index * 0.1 }}
       whileHover={!isMobile ? { 
         y: -5,
-        boxShadow: '0 10px 30px rgba(0, 0, 0, 0.12)'
+        boxShadow: '0 10px 30px rgba(0, 245, 255, 0.2)'
       } : {}}
       style={{
-        backgroundColor: '#F9FAFB',
+        backgroundColor: 'var(--card)',
         padding: '1.5rem',
         borderRadius: '0.5rem',
-        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
+        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)',
         transition: 'all 0.3s ease',
         maxWidth: '500px',
         width: '100%',
-        margin: isMobile ? '0 auto' : '0'
+        margin: isMobile ? '0 auto' : '0',
+        border: '1px solid rgba(0, 245, 255, 0.1)'
       }}
     >
       <motion.h3
@@ -139,9 +142,10 @@ function SkillCard({ category, index, isMobile, isInView }) {
         style={{
           fontSize: '1.25rem',
           fontWeight: '600',
-          color: '#4F46E5',
+          color: 'var(--cyan)',
           marginBottom: '1.5rem',
-          textAlign: 'center'
+          textAlign: 'center',
+          textShadow: '0 0 8px rgba(0, 245, 255, 0.2)'
         }}
       >
         {category.category}
@@ -166,14 +170,15 @@ function SkillCard({ category, index, isMobile, isInView }) {
             }}>
               <span style={{
                 fontSize: '0.9rem',
-                color: '#4B5563',
-                fontWeight: '500'
+                color: 'var(--text)',
+                fontWeight: '500',
+                opacity: 0.9
               }}>
                 {skill.name}
               </span>
               <span style={{
                 fontSize: '0.9rem',
-                color: '#4F46E5',
+                color: 'var(--green)',
                 fontWeight: '600'
               }}>
                 {skill.level}%
@@ -182,7 +187,7 @@ function SkillCard({ category, index, isMobile, isInView }) {
             
             <div style={{
               height: '6px',
-              backgroundColor: '#E5E7EB',
+              backgroundColor: 'rgba(0, 245, 255, 0.1)',
               borderRadius: '3px',
               overflow: 'hidden'
             }}>
@@ -192,8 +197,9 @@ function SkillCard({ category, index, isMobile, isInView }) {
                 transition={{ duration: 1, delay: 0.4 + index * 0.1 + skillIndex * 0.05 }}
                 style={{
                   height: '100%',
-                  background: 'linear-gradient(90deg, #4F46E5 0%, #10B981 100%)',
-                  borderRadius: '3px'
+                  background: 'linear-gradient(90deg, var(--cyan) 0%, var(--green) 100%)',
+                  borderRadius: '3px',
+                  boxShadow: '0 0 5px rgba(0, 255, 194, 0.3)'
                 }}
               />
             </div>

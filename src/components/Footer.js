@@ -16,10 +16,11 @@ export default function Footer() {
 
   return (
     <footer id="footer" style={{
-      backgroundColor: '#1F2937',
-      color: 'white',
+      backgroundColor: 'var(--navy)',
+      color: 'var(--text)',
       padding: isMobile ? '2rem 1rem' : '3rem 10%',
-      textAlign: 'center'
+      textAlign: 'center',
+      borderTop: '1px solid rgba(0, 245, 255, 0.1)'
     }}>
       <motion.h2
         initial={{ opacity: 0, y: 20 }}
@@ -29,7 +30,9 @@ export default function Footer() {
         style={{
           fontSize: isMobile ? '1.75rem' : '2rem',
           fontWeight: '700',
-          marginBottom: '1.5rem'
+          marginBottom: '1.5rem',
+          color: 'var(--cyan)',
+          textShadow: '0 0 10px rgba(0, 245, 255, 0.3)'
         }}
       >
         Let's Connect
@@ -65,8 +68,10 @@ export default function Footer() {
         viewport={{ once: true }}
         transition={{ duration: 0.5, delay: 0.3 }}
         style={{
-          color: '#9CA3AF',
-          fontSize: '0.875rem'
+          color: 'var(--text)',
+          opacity: 0.7,
+          fontSize: '0.875rem',
+          marginTop: '1rem'
         }}
       >
         © 2025 Muhammad Asad Iqbal. All rights reserved.
@@ -95,7 +100,7 @@ function ContactItem({ label, value, link, index, isMobile }) {
         flexDirection: 'column',
         alignItems: 'center',
         textDecoration: 'none',
-        color: 'white',
+        color: 'var(--text)',
         width: isMobile ? '120px' : 'auto'
       }}
     >
@@ -104,26 +109,32 @@ function ContactItem({ label, value, link, index, isMobile }) {
           width: isMobile ? '50px' : '60px',
           height: isMobile ? '50px' : '60px',
           borderRadius: '50%',
-          backgroundColor: '#4F46E5',
+          backgroundColor: 'rgba(0, 245, 255, 0.1)',
           display: 'flex',
           justifyContent: 'center',
           alignItems: 'center',
           marginBottom: '0.5rem',
-          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)'
+          boxShadow: '0 4px 10px rgba(0, 245, 255, 0.2)',
+          border: '1px solid rgba(0, 245, 255, 0.3)'
         }}
         whileHover={{
-          backgroundColor: '#10B981',
+          backgroundColor: 'rgba(0, 245, 255, 0.2)',
+          boxShadow: '0 0 15px rgba(0, 245, 255, 0.4)',
           transition: { duration: 0.3 }
         }}
       >
-        <span style={{ fontSize: isMobile ? '1.25rem' : '1.5rem' }}>
+        <span style={{ 
+          fontSize: isMobile ? '1.25rem' : '1.5rem',
+          color: 'var(--cyan)'
+        }}>
           {getIcon(label)}
         </span>
       </motion.div>
       
       <span style={{
         fontWeight: '500',
-        fontSize: isMobile ? '0.9rem' : '1rem'
+        fontSize: isMobile ? '0.9rem' : '1rem',
+        opacity: 0.9
       }}>
         {value}
       </span>

@@ -31,9 +31,10 @@ function Header() {
       left: 0,
       right: 0,
       zIndex: 1000,
-      background: 'linear-gradient(145deg, #4F46E5 0%, #10B981 100%)',
-      boxShadow: '0 2px 20px rgba(0,0,0,0.1)',
-      padding: isMobile ? '1rem' : '1.5rem 2rem'
+      background: 'var(--navy)',
+      boxShadow: '0 2px 20px rgba(0,0,0,0.3)',
+      padding: isMobile ? '1rem' : '1.5rem 2rem',
+      borderBottom: '1px solid rgba(0, 245, 255, 0.1)'
     }}>
       <div style={{
         display: 'flex',
@@ -51,9 +52,9 @@ function Header() {
           style={{
             fontSize: isMobile ? '1.5rem' : '2rem',
             fontWeight: '700',
-            color: '#FFFFFF',
+            color: 'var(--text)',
             textDecoration: 'none',
-            textShadow: '0 2px 4px rgba(0,0,0,0.1)'
+            textShadow: '0 2px 4px rgba(0, 245, 255, 0.3)'
           }}
         >
           Asad Iqbal
@@ -68,7 +69,7 @@ function Header() {
               border: 'none',
               fontSize: '1.5rem',
               cursor: 'pointer',
-              color: '#FFFFFF'
+              color: 'var(--cyan)'
             }}
           >
             {menuOpen ? '✕' : '☰'}
@@ -87,11 +88,11 @@ function Header() {
                 transition={{ duration: 0.5 }}
                 whileHover={{ 
                   scale: 1.1,
-                  color: '#FFFFFF',
-                  textShadow: '0 0 8px rgba(255,255,255,0.5)'
+                  color: 'var(--cyan)',
+                  textShadow: '0 0 8px rgba(0, 245, 255, 0.5)'
                 }}
                 style={{
-                  color: 'rgba(255,255,255,0.9)',
+                  color: 'var(--text)',
                   textDecoration: 'none',
                   fontWeight: '600',
                   fontSize: '1rem',
@@ -109,7 +110,7 @@ function Header() {
                     bottom: 0,
                     left: 0,
                     height: '2px',
-                    background: '#FFFFFF',
+                    background: 'var(--cyan)',
                     borderRadius: '2px'
                   }}
                 />
@@ -124,11 +125,11 @@ function Header() {
               transition={{ duration: 0.5 }}
               whileHover={{ 
                 scale: 1.1,
-                color: '#FFFFFF',
-                textShadow: '0 0 8px rgba(255,255,255,0.5)'
+                color: 'var(--green)',
+                textShadow: '0 0 8px rgba(0, 255, 194, 0.5)'
               }}
               style={{
-                color: 'rgba(255,255,255,0.9)',
+                color: 'var(--text)',
                 textDecoration: 'none',
                 fontWeight: '600',
                 fontSize: '1rem',
@@ -146,7 +147,7 @@ function Header() {
                   bottom: 0,
                   left: 0,
                   height: '2px',
-                  background: '#FFFFFF',
+                  background: 'var(--green)',
                   borderRadius: '2px'
                 }}
               />
@@ -166,12 +167,14 @@ function Header() {
               top: '100%',
               left: 0,
               right: 0,
-              background: 'linear-gradient(145deg, #4F46E5 0%, #10B981 100%)',
-              boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
+              background: 'var(--navy)',
+              boxShadow: '0 10px 30px rgba(0,0,0,0.3)',
               padding: '1rem',
               display: 'flex',
               flexDirection: 'column',
-              gap: '1rem'
+              gap: '1rem',
+              borderTop: '1px solid rgba(0, 245, 255, 0.1)',
+              borderBottom: '1px solid rgba(0, 245, 255, 0.1)'
             }}
           >
             {['Home', 'Skills', 'Achievements', 'Projects'].map((item) => (
@@ -181,18 +184,19 @@ function Header() {
                 onClick={() => setMenuOpen(false)}
                 whileTap={{ scale: 0.95 }}
                 style={{
-                  color: 'rgba(255,255,255,0.9)',
+                  color: 'var(--text)',
                   textDecoration: 'none',
                   fontWeight: '600',
                   fontSize: '1.1rem',
                   padding: '0.75rem 1rem',
                   borderRadius: '0.5rem',
                   transition: 'all 0.3s ease',
-                  background: 'rgba(255,255,255,0.1)'
+                  background: 'rgba(0, 245, 255, 0.05)',
+                  border: '1px solid rgba(0, 245, 255, 0.1)'
                 }}
                 whileHover={{
-                  background: 'rgba(255,255,255,0.2)',
-                  color: '#FFFFFF'
+                  background: 'rgba(0, 245, 255, 0.1)',
+                  color: 'var(--cyan)'
                 }}
               >
                 {item}
@@ -204,18 +208,19 @@ function Header() {
               onClick={scrollToFooter}
               whileTap={{ scale: 0.95 }}
               style={{
-                color: 'rgba(255,255,255,0.9)',
+                color: 'var(--text)',
                 textDecoration: 'none',
                 fontWeight: '600',
                 fontSize: '1.1rem',
                 padding: '0.75rem 1rem',
                 borderRadius: '0.5rem',
                 transition: 'all 0.3s ease',
-                background: 'rgba(255,255,255,0.1)'
+                background: 'rgba(0, 255, 194, 0.05)',
+                border: '1px solid rgba(0, 255, 194, 0.1)'
               }}
               whileHover={{
-                background: 'rgba(255,255,255,0.2)',
-                color: '#FFFFFF'
+                background: 'rgba(0, 255, 194, 0.1)',
+                color: 'var(--green)'
               }}
             >
               Contact

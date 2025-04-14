@@ -34,7 +34,7 @@ const Projects = () => {
       ],
       demoVideo: agriDiagnosisVideo,
       githubRepo: "https://github.com/yourusername/agri-diagnosis",
-      color: "#4F46E5",
+      color: "var(--cyan)",
       icon: "🌱"
     },
     // Add more projects here as needed
@@ -50,8 +50,10 @@ const Projects = () => {
       ref={sectionRef}
       style={{
         padding: isMobile ? '4rem 1rem' : '6rem 10%',
-        backgroundColor: '#F8FAFC',
-        position: 'relative'
+        backgroundColor: 'var(--navy)',
+        position: 'relative',
+        borderTop: '1px solid rgba(0, 245, 255, 0.1)',
+        borderBottom: '1px solid rgba(0, 245, 255, 0.1)'
       }}
     >
       <motion.div
@@ -62,10 +64,11 @@ const Projects = () => {
         <h2 style={{
           fontSize: isMobile ? '2rem' : '2.5rem',
           fontWeight: '700',
-          color: '#1F2937',
+          color: 'var(--cyan)',
           marginBottom: isMobile ? '2rem' : '3rem',
           textAlign: 'center',
-          position: 'relative'
+          position: 'relative',
+          textShadow: '0 0 10px rgba(0, 245, 255, 0.3)'
         }}>
           Projects
         </h2>
@@ -118,9 +121,10 @@ const Projects = () => {
                 position: 'relative',
                 width: isMobile ? '100%' : '90%',
                 maxWidth: '900px',
-                backgroundColor: '#FFFFFF',
+                backgroundColor: 'var(--card)',
                 borderRadius: isMobile ? 0 : '0.5rem',
-                overflow: 'hidden'
+                overflow: 'hidden',
+                border: '1px solid rgba(0, 245, 255, 0.2)'
               }}
               onClick={(e) => e.stopPropagation()}
             >
@@ -130,8 +134,8 @@ const Projects = () => {
                   position: 'absolute',
                   top: '1rem',
                   right: '1rem',
-                  background: 'rgba(0, 0, 0, 0.5)',
-                  border: 'none',
+                  background: 'rgba(0, 245, 255, 0.2)',
+                  border: '1px solid rgba(0, 245, 255, 0.3)',
                   width: '40px',
                   height: '40px',
                   borderRadius: '50%',
@@ -140,7 +144,7 @@ const Projects = () => {
                   alignItems: 'center',
                   cursor: 'pointer',
                   zIndex: 10,
-                  color: 'white'
+                  color: 'var(--cyan)'
                 }}
                 onClick={() => setActiveDemo(null)}
               >
@@ -180,18 +184,19 @@ const Projects = () => {
               {/* Project Info */}
               <div style={{
                 padding: '1.5rem',
-                backgroundColor: '#FFFFFF'
+                backgroundColor: 'var(--card)'
               }}>
                 <h3 style={{
                   margin: 0,
-                  color: projects[activeDemo].color,
+                  color: 'var(--cyan)',
                   fontSize: isMobile ? '1.1rem' : '1.25rem'
                 }}>
                   {projects[activeDemo].title}
                 </h3>
                 <p style={{
                   margin: '0.25rem 0 0',
-                  color: '#666',
+                  color: 'var(--text)',
+                  opacity: 0.8,
                   fontSize: isMobile ? '0.8rem' : '0.9rem'
                 }}>
                   {projects[activeDemo].technologies}
@@ -213,22 +218,27 @@ const ProjectCard = ({ project, isMobile, isInView, index, showDemo }) => {
       transition={{ duration: 0.5, delay: index * 0.1 }}
       style={{
         width: '100%',
-        backgroundColor: '#FFFFFF',
+        backgroundColor: 'var(--card)',
         borderRadius: '0.5rem',
         overflow: 'hidden',
-        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
+        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)',
         transition: 'all 0.3s ease',
-        margin: isMobile ? '0 auto' : '0'
+        margin: isMobile ? '0 auto' : '0',
+        border: '1px solid rgba(0, 245, 255, 0.1)'
       }}
       whileHover={!isMobile ? {
         y: -5,
-        boxShadow: '0 10px 30px rgba(0, 0, 0, 0.12)'
+        boxShadow: '0 10px 30px rgba(0, 245, 255, 0.2)'
       } : {}}
     >
+      {/* Header Section - Styled like button but without hover effects */}
       <div style={{
-        backgroundColor: project.color,
         padding: isMobile ? '1.25rem' : '1.5rem',
-        color: '#FFFFFF',
+        backgroundColor: 'rgba(0, 245, 255, 0.1)',
+        color: project.color,
+        border: `1px solid ${project.color}`,
+        borderRadius: '0.5rem',
+        margin: '1rem',
         display: 'flex',
         alignItems: 'center',
         gap: '1rem'
@@ -238,7 +248,7 @@ const ProjectCard = ({ project, isMobile, isInView, index, showDemo }) => {
             fontSize: isMobile ? '1.75rem' : '2rem',
             width: isMobile ? '50px' : '60px',
             height: isMobile ? '50px' : '60px',
-            backgroundColor: 'rgba(255, 255, 255, 0.2)',
+            backgroundColor: 'rgba(10, 25, 47, 0.3)',
             borderRadius: '50%',
             display: 'flex',
             justifyContent: 'center',
@@ -251,15 +261,12 @@ const ProjectCard = ({ project, isMobile, isInView, index, showDemo }) => {
           {project.icon}
         </motion.div>
         
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          animate={isInView ? { opacity: 1, x: 0 } : {}}
-          transition={{ delay: 0.3 + index * 0.1 }}
-        >
+        <div>
           <h3 style={{
             fontSize: isMobile ? '1.1rem' : '1.25rem',
             fontWeight: '600',
-            marginBottom: '0.25rem'
+            marginBottom: '0.25rem',
+            color: project.color
           }}>
             {project.title}
           </h3>
@@ -268,19 +275,21 @@ const ProjectCard = ({ project, isMobile, isInView, index, showDemo }) => {
             flexWrap: 'wrap',
             gap: '0.5rem',
             fontSize: isMobile ? '0.8rem' : '0.875rem',
-            opacity: '0.9'
+            opacity: '0.9',
+            color: project.color
           }}>
             <span>{project.technologies}</span>
             <span>•</span>
             <span>{project.date}</span>
           </div>
-        </motion.div>
+        </div>
       </div>
       
-      <div style={{ padding: isMobile ? '1.25rem' : '1.5rem' }}>
+      <div style={{ padding: isMobile ? '0 1.25rem 1.25rem' : '0 1.5rem 1.5rem' }}>
         <motion.p
           style={{
-            color: '#4B5563',
+            color: 'var(--text)',
+            opacity: 0.9,
             fontSize: isMobile ? '0.95rem' : '1rem',
             marginBottom: '1.5rem',
             lineHeight: '1.6'
@@ -304,7 +313,8 @@ const ProjectCard = ({ project, isMobile, isInView, index, showDemo }) => {
                 position: 'relative',
                 paddingLeft: '1.5rem',
                 marginBottom: '0.75rem',
-                color: '#4B5563',
+                color: 'var(--text)',
+                opacity: 0.9,
                 fontSize: isMobile ? '0.9rem' : '1rem',
                 lineHeight: '1.6'
               }}
@@ -315,7 +325,7 @@ const ProjectCard = ({ project, isMobile, isInView, index, showDemo }) => {
               <span style={{
                 position: 'absolute',
                 left: 0,
-                color: project.color,
+                color: 'var(--green)',
                 fontWeight: 'bold',
                 fontSize: '1.2rem',
               }}>•</span>
@@ -333,31 +343,33 @@ const ProjectCard = ({ project, isMobile, isInView, index, showDemo }) => {
             onClick={showDemo}
             style={{
               padding: '0.5rem 1rem',
-              backgroundColor: project.color,
-              color: '#FFFFFF',
-              border: 'none',
+              backgroundColor: 'rgba(0, 245, 255, 0.1)',
+              color: 'var(--cyan)',
+              border: '1px solid var(--cyan)',
               borderRadius: '0.25rem',
               cursor: 'pointer',
               fontSize: isMobile ? '0.8rem' : '0.875rem',
-              fontWeight: '500',
+              fontWeight: '600',
               display: 'flex',
               alignItems: 'center',
               gap: '0.5rem',
-              textDecoration: 'none'
+              textDecoration: 'none',
+              transition: 'all 0.3s ease'
             }}
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.7 + index * 0.1 }}
+            transition={{ delay: 0.3 + index * 0.1 }}
             whileHover={{
-              scale: 1.05,
-              boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)'
+              backgroundColor: 'var(--cyan)',
+              color: '#000000',
+              boxShadow: '0 0 15px rgba(0, 245, 255, 0.5)'
             }}
             whileTap={{
               scale: 0.95
             }}
           >
             <span>View Demo</span>
-            <span>🎥</span>
+            <span style={{ color: 'inherit' }}>🎥</span>
           </motion.button>
           
           <motion.a
@@ -366,31 +378,33 @@ const ProjectCard = ({ project, isMobile, isInView, index, showDemo }) => {
             rel="noopener noreferrer"
             style={{
               padding: '0.5rem 1rem',
-              backgroundColor: '#F3F4F6',
-              color: project.color,
-              border: 'none',
+              backgroundColor: 'rgba(0, 255, 194, 0.1)',
+              color: 'var(--green)',
+              border: '1px solid var(--green)',
               borderRadius: '0.25rem',
               cursor: 'pointer',
               fontSize: isMobile ? '0.8rem' : '0.875rem',
-              fontWeight: '500',
+              fontWeight: '600',
               display: 'flex',
               alignItems: 'center',
               gap: '0.5rem',
-              textDecoration: 'none'
+              textDecoration: 'none',
+              transition: 'all 0.3s ease'
             }}
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.75 + index * 0.1 }}
+            transition={{ delay: 0.3 + index * 0.1 }}
             whileHover={{
-              scale: 1.05,
-              boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)'
+              backgroundColor: 'var(--green)',
+              color: '#000000',
+              boxShadow: '0 0 15px rgba(0, 255, 194, 0.5)'
             }}
             whileTap={{
               scale: 0.95
             }}
           >
             <span>View Code</span>
-            <span>💻</span>
+            <span style={{ color: 'inherit' }}>💻</span>
           </motion.a>
         </div>
       </div>

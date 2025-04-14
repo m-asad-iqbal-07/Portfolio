@@ -21,7 +21,7 @@ const achievements = [
       "Presented technical solutions to judges, receiving feedback on creativity and execution"
     ],
     icon: "🏆",
-    color: "#4F46E5",
+    color: "var(--cyan)",
     certificate: certificates.codex24
   },
   {
@@ -35,7 +35,7 @@ const achievements = [
       "Judged submissions based on technical proficiency and creativity"
     ],
     icon: "📢",
-    color: "#4F46E5",
+    color: "var(--cyan)",
     certificate: certificates.nextgen
   },
   {
@@ -50,7 +50,7 @@ const achievements = [
       "Gained insights into data-driven research methodologies"
     ],
     icon: "🌐",
-    color: "#10B981",
+    color: "var(--green)",
     certificate: certificates.ict24
   },
   {
@@ -64,7 +64,7 @@ const achievements = [
       "Networked with researchers about computational models"
     ],
     icon: "🧠",
-    color: "#10B981",
+    color: "var(--green)",
     certificate: certificates.frontiers
   }
 ];
@@ -111,8 +111,10 @@ export default function Achievements() {
         ref={sectionRef}
         style={{
           padding: isMobile ? '2rem 1rem' : '5rem 10%',
-          backgroundColor: '#F8FAFC',
-          overflow: 'hidden'
+          backgroundColor: 'var(--navy)',
+          overflow: 'hidden',
+          borderTop: '1px solid rgba(0, 245, 255, 0.1)',
+          borderBottom: '1px solid rgba(0, 245, 255, 0.1)'
         }}
       >
         <motion.div
@@ -123,28 +125,13 @@ export default function Achievements() {
           <h2 style={{
             fontSize: isMobile ? '2rem' : '2.5rem',
             fontWeight: '700',
-            color: '#1F2937',
+            color: 'var(--cyan)',
             marginBottom: isMobile ? '2rem' : '3rem',
             textAlign: 'center',
-            position: 'relative'
+            position: 'relative',
+            textShadow: '0 0 10px rgba(0, 245, 255, 0.3)'
           }}>
             Key Achievements
-            <motion.span 
-              style={{
-                content: '""',
-                position: 'absolute',
-                bottom: '-10px',
-                left: '50%',
-                transform: 'translateX(-50%)',
-                width: '80px',
-                height: '4px',
-                background: 'linear-gradient(90deg, #4F46E5 0%, #10B981 100%)',
-                borderRadius: '2px'
-              }}
-              initial={{ scaleX: 0 }}
-              animate={isInView ? { scaleX: 1 } : {}}
-              transition={{ delay: 0.3, duration: 0.5 }}
-            />
           </h2>
         </motion.div>
         
@@ -210,9 +197,10 @@ export default function Achievements() {
                 position: 'relative',
                 width: isMobile ? '100%' : '90%',
                 height: isMobile ? '100%' : '90%',
-                backgroundColor: '#FFFFFF',
+                backgroundColor: 'var(--card)',
                 borderRadius: isMobile ? 0 : '0.5rem',
-                overflow: 'hidden'
+                overflow: 'hidden',
+                border: '1px solid rgba(0, 245, 255, 0.2)'
               }}
               onClick={(e) => e.stopPropagation()}
               onMouseEnter={() => setShowCertificateInfo(true)}
@@ -225,8 +213,8 @@ export default function Achievements() {
                   left: '1rem',
                   top: '50%',
                   transform: 'translateY(-50%)',
-                  background: 'rgba(255, 255, 255, 0.8)',
-                  border: 'none',
+                  background: 'rgba(0, 245, 255, 0.2)',
+                  border: '1px solid rgba(0, 245, 255, 0.4)',
                   width: '40px',
                   height: '40px',
                   borderRadius: '50%',
@@ -235,7 +223,8 @@ export default function Achievements() {
                   alignItems: 'center',
                   cursor: 'pointer',
                   zIndex: 10,
-                  boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)'
+                  boxShadow: '0 2px 10px rgba(0, 0, 0, 0.3)',
+                  color: 'var(--cyan)'
                 }}
                 onClick={(e) => {
                   e.stopPropagation();
@@ -251,17 +240,18 @@ export default function Achievements() {
                   right: '1rem',
                   top: '50%',
                   transform: 'translateY(-50%)',
-                  background: 'rgba(255, 255, 255, 0.8)',
-                  border: 'none',
+                  background: 'rgba(0, 245, 255, 0.2)',
+                  border: '1px solid rgba(0, 245, 255, 0.4)',
                   width: '40px',
-                  height: '40px ',
+                  height: '40px',
                   borderRadius: '50%',
                   display: 'flex',
                   justifyContent: 'center',
                   alignItems: 'center',
                   cursor: 'pointer',
                   zIndex: 10,
-                  boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)'
+                  boxShadow: '0 2px 10px rgba(0, 0, 0, 0.3)',
+                  color: 'var(--cyan)'
                 }}
                 onClick={(e) => {
                   e.stopPropagation();
@@ -277,8 +267,8 @@ export default function Achievements() {
                   position: 'absolute',
                   top: '1rem',
                   right: '1rem',
-                  background: 'rgba(0, 0, 0, 0.5)',
-                  border: 'none',
+                  background: 'rgba(0, 245, 255, 0.2)',
+                  border: '1px solid rgba(0, 245, 255, 0.4)',
                   width: '40px',
                   height: '40px',
                   borderRadius: '50%',
@@ -287,7 +277,7 @@ export default function Achievements() {
                   alignItems: 'center',
                   cursor: 'pointer',
                   zIndex: 10,
-                  color: 'white'
+                  color: 'var(--cyan)'
                 }}
                 onClick={() => setActiveCertificate(null)}
               >
@@ -338,7 +328,8 @@ export default function Achievements() {
                       right: 0,
                       textAlign: 'center',
                       padding: '0.5rem',
-                      backgroundColor: 'rgba(255, 255, 255, 0.9)'
+                      backgroundColor: 'rgba(10, 25, 47, 0.9)',
+                      borderTop: '1px solid rgba(0, 245, 255, 0.2)'
                     }}
                   >
                     <h3 style={{
@@ -350,7 +341,8 @@ export default function Achievements() {
                     </h3>
                     <p style={{
                       margin: '0.25rem 0 0',
-                      color: '#666',
+                      color: 'var(--text)',
+                      opacity: 0.8,
                       fontSize: isMobile ? '0.8rem' : '0.9rem'
                     }}>
                       {`${achievements[currentIndex].organization} • ${achievements[currentIndex].date}`}
@@ -375,22 +367,27 @@ const AchievementCard = ({ achievement, showCertificate, isMobile, isInView }) =
       style={{
         width: '100%',
         maxWidth: '500px',
-        backgroundColor: '#FFFFFF',
+        backgroundColor: 'var(--card)',
         borderRadius: '0.5rem',
         overflow: 'hidden',
-        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.08)',
+        boxShadow: '0 4px 20px rgba(0, 0, 0, 0.2)',
         transition: 'all 0.1s ease',
-        margin: isMobile ? '0 auto' : '0'
+        margin: isMobile ? '0 auto' : '0',
+        border: '1px solid rgba(0, 245, 255, 0.1)'
       }}
       whileHover={!isMobile ? {
         y: -5,
-        boxShadow: '0 10px 30px rgba(0, 0, 0, 0.12)'
+        boxShadow: '0 10px 30px rgba(0, 245, 255, 0.2)'
       } : {}}
     >
+      {/* Header Section - Styled like button but without hover effects */}
       <div style={{
-        backgroundColor: achievement.color,
         padding: isMobile ? '1.25rem' : '1.5rem',
-        color: '#FFFFFF',
+        backgroundColor: 'rgba(0, 245, 255, 0.1)',
+        color: achievement.color,
+        border: `1px solid ${achievement.color}`,
+        borderRadius: '0.5rem',
+        margin: '1rem',
         display: 'flex',
         alignItems: 'center',
         gap: '1rem'
@@ -400,7 +397,7 @@ const AchievementCard = ({ achievement, showCertificate, isMobile, isInView }) =
             fontSize: isMobile ? '1.75rem' : '2rem',
             width: isMobile ? '50px' : '60px',
             height: isMobile ? '50px' : '60px',
-            backgroundColor: 'rgba(255, 255, 255, 0.2)',
+            backgroundColor: 'rgba(10, 25, 47, 0.3)',
             borderRadius: '50%',
             display: 'flex',
             justifyContent: 'center',
@@ -413,33 +410,32 @@ const AchievementCard = ({ achievement, showCertificate, isMobile, isInView }) =
           {achievement.icon}
         </motion.div>
         
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          animate={isInView ? { opacity: 1, x: 0 } : {}}
-          transition={{ delay: 0.3 }}
-        >
+        <div>
           <h3 style={{
             fontSize: isMobile ? '1.1rem' : '1.25rem',
             fontWeight: '600',
-            marginBottom: '0.25rem'
+            marginBottom: '0.25rem',
+            color: achievement.color
           }}>
             {achievement.title}
           </h3>
           <p style={{
             fontSize: isMobile ? '0.8rem' : '0.875rem',
-            opacity: '0.9'
+            opacity: '0.9',
+            color: achievement.color
           }}>
             {achievement.organization}
           </p>
-        </motion.div>
+        </div>
       </div>
       
-      <div style={{ padding: isMobile ? '1.25rem' : '1.5rem' }}>
+      <div style={{ padding: isMobile ? '0 1.25rem 1.25rem' : '0 1.5rem 1.5rem' }}>
         <div style={{
           display: 'flex',
           justifyContent: 'space-between',
           marginBottom: '1rem',
-          color: '#6B7280',
+          color: 'var(--text)',
+          opacity: 0.8,
           fontSize: isMobile ? '0.8rem' : '0.875rem'
         }}>
           <span>{achievement.date}</span>
@@ -458,8 +454,10 @@ const AchievementCard = ({ achievement, showCertificate, isMobile, isInView }) =
                 position: 'relative',
                 paddingLeft: '1.5rem',
                 marginBottom: '0.75rem',
-                color: '#4B5563',
-                fontSize: isMobile ? '0.9rem' : '1rem'
+                color: 'var(--text)',
+                opacity: 0.9,
+                fontSize: isMobile ? '0.9rem' : '1rem',
+                lineHeight: '1.6'
               }}
               initial={{ opacity: 0, x: -10 }}
               animate={isInView ? { opacity: 1, x: 0 } : {}}
@@ -481,26 +479,28 @@ const AchievementCard = ({ achievement, showCertificate, isMobile, isInView }) =
           <motion.button
             style={{
               padding: '0.5rem 1rem',
-              backgroundColor: achievement.color,
-              color: '#FFFFFF',
-              border: 'none',
+              backgroundColor: 'rgba(0, 245, 255, 0.1)',
+              color: achievement.color,
+              border: `1px solid ${achievement.color}`,
               borderRadius: '0.25rem',
               cursor: 'pointer',
               fontSize: isMobile ? '0.8rem' : '0.875rem',
-              fontWeight: '500',
+              fontWeight: '600',
               display: 'flex',
               alignItems: 'center',
               gap: '0.5rem',
               marginTop: '1rem',
               width: '100%',
-              justifyContent: 'center'
+              justifyContent: 'center',
+              transition: 'all 0.3s ease'
             }}
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.6 }}
+            transition={{ delay: 0.3 }}
             whileHover={{
-              scale: 1.05,
-              boxShadow: '0 2px 10px rgba(0, 0, 0, 0.2)'
+              backgroundColor: achievement.color,
+              color: '#000000',
+              boxShadow: `0 0 15px ${achievement.color === 'var(--cyan)' ? 'rgba(0, 245, 255, 0.5)' : 'rgba(0, 255, 194, 0.5)'}`
             }}
             whileTap={{
               scale: 0.95
@@ -508,7 +508,7 @@ const AchievementCard = ({ achievement, showCertificate, isMobile, isInView }) =
             onClick={showCertificate}
           >
             <span>View Certificate</span>
-            <span>📜</span>
+            <span style={{ color: 'inherit' }}>📜</span>
           </motion.button>
         )}
       </div>
