@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 
 const skillsData = [
   {
@@ -49,6 +49,8 @@ const skillsData = [
 
 export default function Skills() {
   const [isMobile, setIsMobile] = useState(false);
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: false, margin: "-100px" });
 
   useEffect(() => {
     const checkMobile = () => {
@@ -61,37 +63,32 @@ export default function Skills() {
   }, []);
 
   return (
-    <section id="skills" style={{
-      padding: isMobile ? '3rem 1rem' : '5rem 10%',
-      backgroundColor: '#FFFFFF'
-    }}>
-      <motion.h2
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.5 }}
-        style={{
+    <section 
+      id="skills" 
+      ref={sectionRef}
+      style={{
+        padding: isMobile ? '4rem 1rem' : '6rem 10%',
+        backgroundColor: '#FFFFFF',
+        position: 'relative'
+      }}
+    >
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.6 }}
+      >
+        <h2 style={{
           fontSize: isMobile ? '2rem' : '2.5rem',
           fontWeight: '700',
           color: '#1F2937',
           marginBottom: isMobile ? '2rem' : '3rem',
           textAlign: 'center',
           position: 'relative'
-        }}
-      >
-        Technical Skills
-        <span style={{
-          content: '""',
-          position: 'absolute',
-          bottom: '-10px',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          width: '80px',
-          height: '4px',
-          background: 'linear-gradient(90deg, #4F46E5 0%, #10B981 100%)',
-          borderRadius: '2px'
-        }}></span>
-      </motion.h2>
+        }}>
+          Technical Skills
+          
+        </h2>
+      </motion.div>
       
       <div style={{
         display: 'grid',
@@ -106,6 +103,7 @@ export default function Skills() {
             category={category}
             index={index}
             isMobile={isMobile}
+            isInView={isInView}
           />
         ))}
       </div>
@@ -113,12 +111,11 @@ export default function Skills() {
   );
 }
 
-function SkillCard({ category, index, isMobile }) {
+function SkillCard({ category, index, isMobile, isInView }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 50 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       whileHover={!isMobile ? { 
         y: -5,
@@ -135,23 +132,33 @@ function SkillCard({ category, index, isMobile }) {
         margin: isMobile ? '0 auto' : '0'
       }}
     >
-      <h3 style={{
-        fontSize: '1.25rem',
-        fontWeight: '600',
-        color: '#4F46E5', // Changed back to original blue
-        marginBottom: '1.5rem',
-        textAlign: 'center'
-      }}>
+      <motion.h3
+        initial={{ opacity: 0, y: 20 }}
+        animate={isInView ? { opacity: 1, y: 0 } : {}}
+        transition={{ delay: 0.2 + index * 0.1 }}
+        style={{
+          fontSize: '1.25rem',
+          fontWeight: '600',
+          color: '#4F46E5',
+          marginBottom: '1.5rem',
+          textAlign: 'center'
+        }}
+      >
         {category.category}
-      </h3>
+      </motion.h3>
       
       <div style={{
         display: 'flex',
         flexDirection: 'column',
         gap: '0.75rem'
       }}>
-        {category.skills.map(skill => (
-          <div key={skill.name}>
+        {category.skills.map((skill, skillIndex) => (
+          <motion.div 
+            key={skill.name}
+            initial={{ opacity: 0, y: 10 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.3 + index * 0.1 + skillIndex * 0.05 }}
+          >
             <div style={{
               display: 'flex',
               justifyContent: 'space-between',
@@ -166,7 +173,7 @@ function SkillCard({ category, index, isMobile }) {
               </span>
               <span style={{
                 fontSize: '0.9rem',
-                color: '#4F46E5', // Changed back to original blue
+                color: '#4F46E5',
                 fontWeight: '600'
               }}>
                 {skill.level}%
@@ -181,17 +188,16 @@ function SkillCard({ category, index, isMobile }) {
             }}>
               <motion.div
                 initial={{ width: 0 }}
-                whileInView={{ width: `${skill.level}%` }}
-                viewport={{ once: true }}
-                transition={{ duration: 1, delay: index * 0.1 + 0.3 }}
+                animate={isInView ? { width: `${skill.level}%` } : {}}
+                transition={{ duration: 1, delay: 0.4 + index * 0.1 + skillIndex * 0.05 }}
                 style={{
                   height: '100%',
-                  background: 'linear-gradient(90deg, #4F46E5 0%, #10B981 100%)', // Original gradient
+                  background: 'linear-gradient(90deg, #4F46E5 0%, #10B981 100%)',
                   borderRadius: '3px'
                 }}
               />
             </div>
-          </div>
+          </motion.div>
         ))}
       </div>
     </motion.div>

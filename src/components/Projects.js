@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useInView } from 'framer-motion';
+import agriDiagnosisVideo from './assets/agridaignosis.mp4';
 
 const Projects = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -31,8 +32,8 @@ const Projects = () => {
         "Implemented multilingual support (English/Urdu) and offline storage",
         "Real-time disease classification with user-friendly interface"
       ],
-      demoVideo: "https://example.com/agri-diagnosis-demo.mp4", // Replace with your actual video URL
-      githubRepo: "https://github.com/yourusername/agri-diagnosis", // Replace with your actual GitHub repo
+      demoVideo: agriDiagnosisVideo,
+      githubRepo: "https://github.com/yourusername/agri-diagnosis",
       color: "#4F46E5",
       icon: "🌱"
     },
@@ -67,22 +68,6 @@ const Projects = () => {
           position: 'relative'
         }}>
           Projects
-          <motion.span 
-            style={{
-              content: '""',
-              position: 'absolute',
-              bottom: '-10px',
-              left: '50%',
-              transform: 'translateX(-50%)',
-              width: '80px',
-              height: '4px',
-              background: 'linear-gradient(90deg, #4F46E5 0%, #10B981 100%)',
-              borderRadius: '2px'
-            }}
-            initial={{ scaleX: 0 }}
-            animate={isInView ? { scaleX: 1 } : {}}
-            transition={{ delay: 0.3, duration: 0.5 }}
-          />
         </h2>
       </motion.div>
 
@@ -176,6 +161,8 @@ const Projects = () => {
                 <video
                   controls
                   autoPlay
+                  muted
+                  playsInline
                   style={{
                     position: 'absolute',
                     top: 0,

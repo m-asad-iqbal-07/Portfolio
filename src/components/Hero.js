@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect, useRef } from 'react';
+import { motion, useInView } from 'framer-motion';
 import CV from './assets/CV.pdf';
 import profileImage from './assets/image.png';
 
@@ -15,6 +15,8 @@ export default function Hero() {
   const [displayText, setDisplayText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const sectionRef = useRef(null);
+  const isInView = useInView(sectionRef, { once: false, margin: "-100px" });
 
   useEffect(() => {
     const checkMobile = () => {
@@ -64,17 +66,21 @@ export default function Hero() {
   };
 
   return (
-    <section id="home" style={{
-      minHeight: '100vh',
-      display: 'flex',
-      flexDirection: isMobile ? 'column' : 'row',
-      alignItems: 'center',
-      justifyContent: 'center',
-      padding: isMobile ? '2rem 1rem' : '0 10%',
-      background: 'linear-gradient(135deg, #FFFFFF 0%, #F0F4F8 100%)',
-      gap: isMobile ? '2rem' : '0',
-      textAlign: 'center'
-    }}>
+    <section 
+      id="home" 
+      ref={sectionRef}
+      style={{
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: isMobile ? 'column' : 'row',
+        alignItems: 'center',
+        justifyContent: 'center',
+        padding: isMobile ? '2rem 1rem' : '0 10%',
+        background: 'linear-gradient(135deg, #FFFFFF 0%, #F0F4F8 100%)',
+        gap: isMobile ? '2rem' : '0',
+        textAlign: 'center'
+      }}
+    >
       {/* Image Section - Comes first on mobile */}
       <motion.div 
         style={{
@@ -88,7 +94,7 @@ export default function Hero() {
           margin: '0 auto'
         }}
         initial={{ opacity: 0, x: isMobile ? 0 : 50 }}
-        animate={{ opacity: 1, x: 0 }}
+        animate={isInView ? { opacity: 1, x: 0 } : {}}
         transition={{ duration: 0.8 }}
       >
         <motion.div
@@ -119,8 +125,6 @@ export default function Hero() {
               position: 'absolute',
               top: '-5%',
               left: '-5%'
-              /* Removed only the color effects: 
-                 mixBlendMode, filter, and opacity */
             }}
           />
         </motion.div>
@@ -130,7 +134,7 @@ export default function Hero() {
           <>
             <motion.div
               initial={{ y: -20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
+              animate={isInView ? { y: 0, opacity: 1 } : {}}
               transition={{ delay: 0.5, duration: 0.8 }}
               style={{
                 position: 'absolute',
@@ -153,7 +157,7 @@ export default function Hero() {
             
             <motion.div
               initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
+              animate={isInView ? { y: 0, opacity: 1 } : {}}
               transition={{ delay: 0.7, duration: 0.8 }}
               style={{
                 position: 'absolute',
@@ -187,7 +191,7 @@ export default function Hero() {
           maxWidth: '600px'
         }}
         initial={{ opacity: 0, x: isMobile ? 0 : -50 }}
-        animate={{ opacity: 1, x: 0 }}
+        animate={isInView ? { opacity: 1, x: 0 } : {}}
         transition={{ duration: 0.8 }}
       >
         <motion.h1
@@ -201,6 +205,9 @@ export default function Hero() {
             marginBottom: '1.5rem',
             textAlign: isMobile ? 'center' : 'left'
           }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.2, duration: 0.6 }}
         >
           Muhammad Asad Iqbal
         </motion.h1>
@@ -216,6 +223,9 @@ export default function Hero() {
               color: '#4B5563',
               fontWeight: '600'
             }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.4, duration: 0.6 }}
           >
             {displayText}{isDeleting ? '' : '|'}
           </motion.h2>
@@ -229,16 +239,24 @@ export default function Hero() {
             marginBottom: '2.5rem',
             textAlign: isMobile ? 'center' : 'left'
           }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.6, duration: 0.6 }}
         >
           8th semester Software Engineering student at University of Mianwali with a 3.41 CGPA. Passionate about building innovative solutions through code.
         </motion.p>
         
-        <div style={{ 
-          display: 'flex', 
-          gap: '1rem',
-          justifyContent: isMobile ? 'center' : 'flex-start',
-          flexWrap: 'wrap'
-        }}>
+        <motion.div
+          style={{ 
+            display: 'flex', 
+            gap: '1rem',
+            justifyContent: isMobile ? 'center' : 'flex-start',
+            flexWrap: 'wrap'
+          }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.8, duration: 0.6 }}
+        >
           <motion.button
             whileHover={{ scale: 1.05, boxShadow: '0 8px 15px rgba(79, 70, 229, 0.3)' }}
             whileTap={{ scale: 0.95 }}
@@ -279,7 +297,7 @@ export default function Hero() {
           >
             Contact Me
           </motion.button>
-        </div>
+        </motion.div>
       </motion.div>
     </section>
   );

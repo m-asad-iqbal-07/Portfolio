@@ -3,10 +3,10 @@ import { motion, AnimatePresence, useInView } from 'framer-motion';
 
 // Certificate images
 const certificates = {
-  codex24: require('./assets/image.png'),
-  nextgen: require('./assets/image.png'),
-  ict24: require('./assets/image.png'),
-  frontiers: require('./assets/image.png')
+  codex24: require('./assets/namal.jpg'),
+  nextgen: require('./assets/certificate.jpg'),
+  ict24: require('./assets/ict.jpg'),
+  frontiers: require('./assets/certificate.jpg')
 };
 
 const achievements = [
@@ -74,6 +74,7 @@ export default function Achievements() {
   const [direction, setDirection] = useState(1);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
+  const [showCertificateInfo, setShowCertificateInfo] = useState(false);
   const sectionRef = useRef(null);
   const isInView = useInView(sectionRef, { once: false, margin: "-100px" });
 
@@ -82,13 +83,8 @@ export default function Achievements() {
       setIsMobile(window.innerWidth < 768);
     };
 
-    // Set initial value
     handleResize();
-    
-    // Add event listener
     window.addEventListener('resize', handleResize);
-    
-    // Clean up
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
@@ -219,6 +215,8 @@ export default function Achievements() {
                 overflow: 'hidden'
               }}
               onClick={(e) => e.stopPropagation()}
+              onMouseEnter={() => setShowCertificateInfo(true)}
+              onMouseLeave={() => setShowCertificateInfo(false)}
             >
               {/* Navigation Arrows */}
               <button
@@ -325,31 +323,41 @@ export default function Achievements() {
                 />
               </motion.div>
               
-              {/* Certificate Info */}
-              <div style={{
-                position: 'absolute',
-                bottom: '1rem',
-                left: 0,
-                right: 0,
-                textAlign: 'center',
-                padding: '0.5rem',
-                backgroundColor: 'rgba(255, 255, 255, 0.9)'
-              }}>
-                <h3 style={{
-                  margin: 0,
-                  color: achievements[currentIndex].color,
-                  fontSize: isMobile ? '1rem' : '1.1rem'
-                }}>
-                  {achievements[currentIndex].title}
-                </h3>
-                <p style={{
-                  margin: '0.25rem 0 0',
-                  color: '#666',
-                  fontSize: isMobile ? '0.8rem' : '0.9rem'
-                }}>
-                  {`${achievements[currentIndex].organization} • ${achievements[currentIndex].date}`}
-                </p>
-              </div>
+              {/* Certificate Info - Only shows on hover */}
+              <AnimatePresence>
+                {showCertificateInfo && (
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 20 }}
+                    transition={{ duration: 0.2 }}
+                    style={{
+                      position: 'absolute',
+                      bottom: '1rem',
+                      left: 0,
+                      right: 0,
+                      textAlign: 'center',
+                      padding: '0.5rem',
+                      backgroundColor: 'rgba(255, 255, 255, 0.9)'
+                    }}
+                  >
+                    <h3 style={{
+                      margin: 0,
+                      color: achievements[currentIndex].color,
+                      fontSize: isMobile ? '1rem' : '1.1rem'
+                    }}>
+                      {achievements[currentIndex].title}
+                    </h3>
+                    <p style={{
+                      margin: '0.25rem 0 0',
+                      color: '#666',
+                      fontSize: isMobile ? '0.8rem' : '0.9rem'
+                    }}>
+                      {`${achievements[currentIndex].organization} • ${achievements[currentIndex].date}`}
+                    </p>
+                  </motion.div>
+                )}
+              </AnimatePresence>
             </motion.div>
           </motion.div>
         )}
