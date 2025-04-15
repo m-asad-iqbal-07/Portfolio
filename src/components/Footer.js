@@ -46,10 +46,10 @@ export default function Footer() {
         marginBottom: '2rem'
       }}>
         {[
-          { label: 'Phone', value: '+92 3337941364', link: 'tel:+923337941364' },
-          { label: 'Email', value: 'masadiqbal385@gmail.com', link: 'mailto:masadiqbal385@gmail.com' },
-          { label: 'LinkedIn', value: 'muhammad-asad-iqbal', link: 'https://linkedin.com/in/muhammad-asad-iqbal' },
-          { label: 'GitHub', value: 'm-asad-iqbal-07', link: 'https://github.com/m-asad-iqbal-07' }
+          { label: 'Phone', value: '', link: 'tel:+923337941364' },
+          { label: 'Email', value: '', link: 'mailto:masadiqbal385@gmail.com' },
+          { label: 'LinkedIn', value: '', link: 'https://linkedin.com/in/muhammad-asad-iqbal' },
+          { label: 'GitHub', value: '', link: 'https://github.com/m-asad-iqbal-07' }
         ].map((item, index) => (
           <ContactItem 
             key={item.label}
