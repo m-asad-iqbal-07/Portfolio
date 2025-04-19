@@ -6,7 +6,7 @@ const certificates = {
   codex24: require('./assets/namal.jpg'),
   nextgen: require('./assets/nexgen.jpg'),
   ict24: require('./assets/ict.jpg'),
-  frontiers: require('./assets/certificate.jpg')
+  frontiers: require('./assets/nexgen.jpg')
 };
 
 const achievements = [
