@@ -4,7 +4,7 @@ import { motion, AnimatePresence, useInView } from 'framer-motion';
 // Certificate images
 const certificates = {
   codex24: require('./assets/namal.jpg'),
-  nextgen: require('./assets/certificate.jpg'),
+  nextgen: require('./assets/nexgen.jpg'),
   ict24: require('./assets/ict.jpg'),
   frontiers: require('./assets/certificate.jpg')
 };

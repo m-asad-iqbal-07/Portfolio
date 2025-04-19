@@ -86,7 +86,7 @@ export default function Hero() {
       <motion.div 
         style={{
           order: isMobile ? 0 : 1,
-          paddingTop:'50px',
+          paddingTop:'60px ',
           position: 'relative',
           display: 'flex',
           justifyContent: 'center',

@@ -33,7 +33,7 @@ const Projects = () => {
         "Real-time disease classification with user-friendly interface"
       ],
       demoVideo: agriDiagnosisVideo,
-      githubRepo: "https://github.com/yourusername/agri-diagnosis",
+      githubRepo: "https://github.com/m-asad-iqbal-07/Agri-Diagnosis",
       color: "var(--cyan)",
       icon: "🌱"
     },
