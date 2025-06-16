@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import CV from './assets/Asad_Iqbal_resume.pdf';
+import CV from './assets/Asad Iqbal CV.pdf';
 import profileImage from './assets/image.png';
 
 const roles = [
