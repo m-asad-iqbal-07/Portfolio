@@ -249,7 +249,7 @@ export default function Hero() {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.6, duration: 0.6 }}
         >
-          8th semester Software Engineering student at University of Mianwali with a 3.41 CGPA. Passionate about building innovative solutions through code.
+          Fresh Graduate Software Engineer from University of Mianwali with a 3.46 CGPA. Passionate about building innovative solutions through code.
         </motion.p>
         
         <motion.div
